@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804205536) do
+ActiveRecord::Schema.define(version: 20170804214346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "building_types", force: :cascade do |t|
+    t.string "name"
+    t.bigint "real_estate_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["real_estate_type_id"], name: "index_building_types_on_real_estate_type_id"
+  end
 
   create_table "real_estate_types", force: :cascade do |t|
     t.string "name"
@@ -21,4 +29,5 @@ ActiveRecord::Schema.define(version: 20170804205536) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "building_types", "real_estate_types"
 end
