@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804214346) do
+ActiveRecord::Schema.define(version: 20170808020959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20170804214346) do
     t.index ["real_estate_type_id"], name: "index_building_types_on_real_estate_type_id"
   end
 
+  create_table "property_listings", force: :cascade do |t|
+    t.string "address"
+    t.integer "bathroom_count"
+    t.string "city"
+    t.string "state"
+    t.integer "room_count"
+    t.integer "zip_code"
+    t.bigint "building_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_type_id"], name: "index_property_listings_on_building_type_id"
+  end
+
   create_table "real_estate_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -30,4 +43,5 @@ ActiveRecord::Schema.define(version: 20170804214346) do
   end
 
   add_foreign_key "building_types", "real_estate_types"
+  add_foreign_key "property_listings", "building_types"
 end
