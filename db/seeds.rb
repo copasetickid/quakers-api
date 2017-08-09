@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+RET  = ["Commerical property", "Corporate Real Estate", "International Real Estate",
+  "Private equity",  "Real estate owned", "Residential property"
+]
+
+RET.map do |item|
+  RealEstateType.create(name: item)
+end
